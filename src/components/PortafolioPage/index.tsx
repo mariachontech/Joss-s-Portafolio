@@ -1,4 +1,5 @@
 import React from "react"
+
 import Header from "../Header"
 import Hero from "../Hero"
 import About from "../About"
@@ -6,8 +7,9 @@ import WorkExperience from "../WorkExperience"
 import Skills from "../Skills"
 import Projects from "../Projects"
 import ContactMe from "../ContactMe"
-import Link from "next/link"
 import { Experience, PageInfo, Project, Skill } from "../../../typings"
+import Image from "next/image"
+import urlFor from "../../../lib/urlFor"
 
 type Props = {
 	pageInfo?: PageInfo
@@ -17,15 +19,16 @@ type Props = {
 }
 
 function PortafolioPage({ pageInfo, experiences, skills, projects }: Props) {
-	
+	console.log(pageInfo)
+
 	return (
-		<div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#f7ab0a]/80 z-0">
+		<div className="bg-mariachon-blueDark text-white h-screen snap-y snap-mandatory overflow-y-scroll overflow-x-hidden scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-mariachon-orange/80 z-0">
 			<Header pageInfo={pageInfo} />
-			
-		{/*	<section id="hero" className="snap-start">
+
+			<section id="hero" className="snap-start">
 				<Hero pageInfo={pageInfo} />
 			</section>
-			 <section id="about" className="snap-center">
+			<section id="about" className="snap-center">
 				<About pageInfo={pageInfo} />
 			</section>
 			<section id="experience" className="snap-center">
@@ -38,20 +41,22 @@ function PortafolioPage({ pageInfo, experiences, skills, projects }: Props) {
 				<Projects projectsData={projects} />
 			</section>
 			<section id="contact" className="snap-start">
-				<ContactMe />
+				<ContactMe pageInfo={pageInfo} />
 			</section>
-
-			<Link href="#hero">
-				<footer className="sticky botton-5 w-full cursor-pointer">
-					<div className="flex items-center justify-center">
-						<img
-							className="h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer"
-							src="https://www.mariachon.com.mx/_next/image?url=%2Fimages%2Fmariachon.png&w=1920&q=75"
-							alt=""
-						/>
-					</div>
-				</footer>
-			</Link> */}
+			<footer className="sticky bottom-5 w-full cursor-pointer">
+				<div className="flex items-center justify-center">
+					<a href="/#hero" >
+						<div className="relative w-20 h-20  rounded-full">
+							<Image
+								className="object-cover rounded-full  filter grayscale hover:grayscale-0 cursor-pointer"
+								src={urlFor(pageInfo?.profilePic).url()}
+								alt={pageInfo?.name || " "}
+								fill
+							/>
+						</div>
+					</a>
+				</div>
+			</footer>
 		</div>
 	)
 }

@@ -2,9 +2,9 @@
 import React from 'react'
 import { useTypewriter, Cursor } from "react-simple-typewriter"
 import BackGrounCircles from '../BackGroundCircles'
-import Link from 'next/link'
 import { PageInfo } from '../../../typings'
 import urlFor from '../../../lib/urlFor'
+import Image from 'next/image'
 
 
 type Props = {
@@ -15,8 +15,8 @@ const Hero = ({ pageInfo }: Props) => {
 	const [text, count] = useTypewriter({
 		words: [
 			`Hi, The Name's ${pageInfo?.name}`,
-			"Guy-who-loves-Coffe",
-			"<ButLovesToCodeMore />",
+			`${pageInfo?.messageAnimated1}`,
+			`${pageInfo?.messageAnimated2}`,
 		],
 		loop: true,
 		delaySpeed: 2000,
@@ -24,35 +24,36 @@ const Hero = ({ pageInfo }: Props) => {
 	return (
 		<div className="h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden">
 			<BackGrounCircles />
-			<img
-				className="relative rounded-full h-32 w-32 mx-auto object-cover"
-				src={
-					pageInfo?.heroImage ? urlFor(pageInfo?.heroImage).url() :
-					"https://w7.pngwing.com/pngs/340/956/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper.png"
-				}
-				alt=""
+			<div className="relative rounded-full h-32 w-32 m-auto">
+			<Image
+				className=" rounded-full mx-auto object-cover"
+				src={urlFor(pageInfo?.heroImage).url()}
+				alt={pageInfo?.name || ""}
+				fill
 			/>
+
+			</div>
 			<div className="z-20">
 				<h2 className="text-sm uppercase text-gray-500 pb-2 tracking-[15px]">
 					{pageInfo?.role}
 				</h2>
 				<h1 className="text-5xl lg:text-6xl font-semibold px-10">
 					<span className="mr-3">{text}</span>
-					<Cursor cursorColor="#F7AB0A" />
+					<Cursor cursorColor="#E66400" />
 				</h1>
 				<div className="pt-5">
-					<Link href="#about">
+					<a href="#about">
 						<button className="heroButton">About</button>
-					</Link>
-					<Link href="#experience">
+					</a>
+					<a href="#experience">
 						<button className="heroButton">Experience</button>
-					</Link>
-					<Link href="#skills">
+					</a>
+					<a href="#skills">
 						<button className="heroButton">Skills</button>
-					</Link>
-					<Link href="#projects">
+					</a>
+					<a href="#projects">
 						<button className="heroButton">Projects</button>
-					</Link>
+					</a>
 				</div>
 			</div>
 		</div>

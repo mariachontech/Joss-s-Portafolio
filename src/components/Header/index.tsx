@@ -1,6 +1,8 @@
 "use client"
 import React from "react"
 import { SocialIcon } from "react-social-icons"
+import { EnvelopeIcon } from "@heroicons/react/24/solid"
+
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { PageInfo } from "../../../typings"
@@ -10,7 +12,6 @@ type Props = {
 }
 
 const Header = ({ pageInfo }: Props) => {
-	//console.log("header", pageInfo)
 
 	return (
 		<header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center">
@@ -30,16 +31,19 @@ const Header = ({ pageInfo }: Props) => {
 				}}
 				className="flex flex-row items-center cursor-pointer"
 			>
-				{pageInfo?.socials.map((social, index) => (
+				{pageInfo?.socials.map((social) => (
 					<SocialIcon
-						key={index}
-						url={social.url}
+						key={social._id}
+						url={social?.url}
 						fgColor="gray"
 						bgColor="transparent"
 					/>
 				))}
+				<div>
+					
+				</div>
 			</motion.div>
-			<Link href="#contact" passHref>
+			<a href="/#contact">
 				<motion.div
 					initial={{
 						x: 500,
@@ -56,17 +60,14 @@ const Header = ({ pageInfo }: Props) => {
 					}}
 					className="flex flex-row items-center text-gray-300 cursor-pointer"
 				>
-					<SocialIcon
-						className="cursor-pointer"
-						network="email"
-						fgColor="gray"
-						bgColor="transparent"
+					<EnvelopeIcon
+						className="w-5 mx-3"
 					/>
 					<p className="uppercase hidden md:inline-flex text-sm text-gray-400">
 						Get in Touch
 					</p>
 				</motion.div>
-			</Link>
+			</a>
 		</header>
 	)
 }

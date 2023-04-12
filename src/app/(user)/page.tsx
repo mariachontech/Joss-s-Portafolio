@@ -5,7 +5,6 @@ import PreviewPortafolio from "@/components/PreviewPortafolio"
 import PortafolioPage from "@/components/PortafolioPage"
 import { fetchExperiences } from "@/utils/fetchExperiences"
 import { fetchPageInfo } from "@/utils/fetchPageInfo"
-import { fetchSocials } from "@/utils/fetchSocials"
 import { fetchProjects } from "@/utils/fetchProjects"
 import { fetchSkills } from "@/utils/fetchSkills"
 import { queryExperiences, queryPageInfo, queryProjects, querySkills, querySocials } from "@/utils/Querys"
@@ -23,7 +22,7 @@ export default async function Home() {
 			<PreviewSuspense
 				fallback={
 					<div role="status">
-						<p className="text-center text-lg animate-pulse text-[#f7AB0A]">
+						<p className="text-center text-lg animate-pulse text-mariachon-orange">
 							Loading Preview Dat...
 						</p>
 					</div>

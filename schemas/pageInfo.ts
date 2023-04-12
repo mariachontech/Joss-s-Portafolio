@@ -16,6 +16,16 @@ export default defineType({
 			type: "string",
 		}),
 		defineField({
+			name: "messageAnimated1",
+			title: "Mensaje animado 1",
+			type: "string",
+		}),
+		defineField({
+			name: "messageAnimated2",
+			title: "Mensaje animado 2",
+			type: "string",
+		}),
+		defineField({
 			name: "heroImage",
 			title: "Image",
 			type: "image",

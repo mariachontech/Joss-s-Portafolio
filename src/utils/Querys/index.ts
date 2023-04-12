@@ -1,7 +1,10 @@
 import { groq } from "next-sanity";
 
 export const queryPageInfo = groq`
-*[_type=='pageInfo'][0]`
+*[_type=='pageInfo'][0]{
+  ...,
+  socials[]->
+}`
 
 
 export const queryExperiences = groq`

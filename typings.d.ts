@@ -14,16 +14,18 @@ interface Image {
 }
 
 export interface PageInfo extends SanityBody {
-    _type: 'pageInfo'
-    address: string
-    backgroundInformation: string
-    email: string
-    role: string
-    heroImage: string
-    name: string
-    phoneNumber: string
-    profilePic: Image
-    socials: Social[]
+	_type: "pageInfo"
+	address: string
+	backgroundInformation: string
+	email: string
+	role: string
+	messageAnimated1: string
+	messageAnimated2: string
+	heroImage: string
+	name: string
+	phoneNumber: string
+	profilePic: Image
+	socials: Social[]
 }
 
 export interface Technology extends SanityBody {

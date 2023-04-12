@@ -19,7 +19,7 @@ function Projects({ projectsData }: Props) {
 			<h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
 				Projects
 			</h3>
-			<div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#f7ab0a]/80 z-20 ">
+			<div className="relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-mariachon-orange/80 z-20 ">
 				{projectsData?.map((project, i) => (
 					<div
 						key={project._id}
@@ -45,7 +45,7 @@ function Projects({ projectsData }: Props) {
 						<div className="space-y-10 px-0 md:px-10 max-w-6xl">
 							<h4 className="text-4xl font-semibold text-center">
 								<span
-									className="underline decoration-[#F7AB0A]/50
+									className="underline decoration-mariachon-orange/50
                                 "
 								>
 									{project.title}
@@ -53,7 +53,7 @@ function Projects({ projectsData }: Props) {
 							</h4>
 							<div className="flex items-center space-x-2 justify-center">
 								{project?.technologies.map((tech) => (
-									<img
+									<motion.img
 									key={tech._id}
 										className="h-10 w-10 rounded-full"
 										src={urlFor(tech.image).url()}
@@ -68,7 +68,7 @@ function Projects({ projectsData }: Props) {
 					</div>
 				))}
 			</div>
-			<div className="w-full absolute top-[30%] bg-[#f7ab0a]/10 eft-0 h-[500px] -skew-y-12" />
+			<div className="w-full absolute top-[30%] bg-mariachon-orange/10 eft-0 h-[500px] -skew-y-12" />
 		</motion.div>
 	)
 }
