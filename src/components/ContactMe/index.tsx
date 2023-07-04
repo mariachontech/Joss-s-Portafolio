@@ -1,9 +1,11 @@
 "use client"
 
-import React from "react"
+import React, { useState } from "react"
 import { EnvelopeIcon, MapPinIcon, PhoneIcon } from "@heroicons/react/24/solid"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { PageInfo } from "../../../typings"
+import { toast } from "react-hot-toast"
+import { set } from "sanity"
 
 type Inputs = {
 	name: string
@@ -17,13 +19,46 @@ type Props = {
 }
 
 function ContactMe({ pageInfo }: Props) {
+	const [loading, setLoading] = useState(false)
 	const {
 		register,
 		handleSubmit,
 		watch,
+		setValue,
 		formState: { errors },
 	} = useForm<Inputs>()
-	const onSubmit: SubmitHandler<Inputs> = (formData) => console.log(formData)
+	const onSubmit: SubmitHandler<Inputs> = (formData) => {
+		setLoading(true)
+
+		const toastId = toast.loading("Enviando email...")
+
+		
+		fetch("/api/email-send", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(formData),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+					console.log("Success:", data)
+					toast.dismiss(toastId)
+					toast.success("Corrreo enviado correctamente")
+				})
+			.catch((err) => {
+				console.log(err)
+				toast.error("Error creating store")
+
+			})
+			.finally(() => {
+				setValue("name", "")
+				setValue("email", "")
+				setValue("subject", "")
+				setValue("message", "")
+				setLoading(false)})
+	
+	}
 	return (
 		<div className="h-screen flex relative flex-col text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center">
 			<h3 className="absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl">
@@ -83,6 +118,7 @@ function ContactMe({ pageInfo }: Props) {
 					/>
 					<button
 						type="submit"
+						disabled={loading}
 						className="bg-mariachon-orange py-5 rounded-md text-black font-bold text-lg"
 					>
 						Submit
